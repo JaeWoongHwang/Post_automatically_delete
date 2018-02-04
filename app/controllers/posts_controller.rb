@@ -5,6 +5,9 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
+
+    # Automatic Delete POST
+    Post.where(['created_at < ?', 30.seconds.ago]).destroy_all
   end
 
   # GET /posts/1
